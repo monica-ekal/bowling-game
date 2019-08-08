@@ -1,6 +1,5 @@
-//
-// Created by monica on 8/4/19.
-//
+// Tests from http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata
+
 
 #include <iostream>
 #include <gtest/gtest.h>

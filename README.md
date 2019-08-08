@@ -1,5 +1,5 @@
 # bowling-game
-A bowling score calculator on a frame-by-frame basis.
+A bowling score calculator that keeps track of the score in each frame.
 
 Test-driven development (TDD) was used to develop this code. The test sections in /tests/ are from the [Bowling Game Kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata) by Robert C. Martin (Uncle Bob). While the code in Uncle Bob's slides calculates the total score after all rolls, this program makes a running total of the score. 
 
