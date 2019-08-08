@@ -1,3 +1,7 @@
 #Do not track the contents of these folders
 
 .idea/
+
+# or these files
+
+*.swp
