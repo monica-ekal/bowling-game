@@ -15,7 +15,6 @@ int prevRoll;
 
 int main (int argc, char *argv[]) {
 
-
     int pins;
     while(rollNumber<21 ||(rollNumber==21&&game.getExtraRoll())) {
 
@@ -23,7 +22,6 @@ int main (int argc, char *argv[]) {
         game.roll(pins);
         game.displayScore();
         prepareNextRoll();
-
 
     }
 
@@ -37,9 +35,7 @@ int main (int argc, char *argv[]) {
  */
 
 
-/*
- * Ensure that the number of pins is valid: The total pins knocked down in each frame can be at most 10.
- */
+//Ensure that the number of pins is valid: The total pins knocked down in each frame can be at most 10.
 int nextRoll(){
 
     if(rollNumber%2!=0 || game.getIsStrike()) prevRoll = 0 ;

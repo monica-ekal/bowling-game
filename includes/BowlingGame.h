@@ -7,12 +7,9 @@
 #define BOWLINGGAME_BOWLINGGAME_H
 class BowlingGame {
 
-
-
     int rollsAfterStrike, totalScore;
     bool isStrike, isSpare, allowBonusRoll;
     std::vector <int> scoresPerFrame, rolls, strikes, spares, frames;
-
 
 public:
 
@@ -55,9 +52,7 @@ public:
     void displayScore();
 
     bool checkVector(int index, std::vector <int> vec);
-
-
-
+    
 };
 #endif //BOWLINGGAME_BOWLINGGAME_H
 

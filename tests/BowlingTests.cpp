@@ -29,7 +29,6 @@ protected:
     }
 };
 
-
 /*
 TEST(BOWLINGtest, SimpleAssert){
 
@@ -55,7 +54,6 @@ TEST_F(BOWLINGtest, canComputeScoreAllOnes){
 
 }
 
-
 TEST_F(BOWLINGtest, canHandleSpares){
 
     rollSpare();
@@ -64,7 +62,6 @@ TEST_F(BOWLINGtest, canHandleSpares){
     ASSERT_EQ(game.getScore(),12);
 
 }
-
 
 TEST_F(BOWLINGtest, canHandleStrikes){
 
@@ -75,8 +72,6 @@ TEST_F(BOWLINGtest, canHandleStrikes){
     ASSERT_EQ(game.getScore(),14);
 
 }
-
-
 
 TEST_F(BOWLINGtest, canHandlePerfectGame){
     manyRolls(12,10);

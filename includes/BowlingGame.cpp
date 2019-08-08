@@ -58,9 +58,7 @@ void BowlingGame::evaluateRoll() {
         }
     }
 
-
 }
-
 
 /*
  * Functions for calculating the score
@@ -86,7 +84,6 @@ void BowlingGame::addToTotal(int score) {
     totalScore+=score;
     scoresPerFrame.push_back(totalScore);
 }
-
 
 /*
  * Functions for checking if the roll results in a strike or spare
@@ -115,8 +112,6 @@ bool BowlingGame::checkConsecutiveStrikes() {
     return false;
 }
 
-
-
 /*
  * Functions for keeping track of the frames
  */
@@ -132,9 +127,6 @@ void BowlingGame::frameReset() {
     frames.push_back(rolls.size());
 }
 
-
-
-
 /*
  * Setting functions for changing isSpare, isStrike and allowBonusRoll
  */
@@ -147,7 +139,6 @@ void BowlingGame::set(bool& var, bool value){
     var = value;
 }
 
-
 /*
  * Functions for main.cpp to access properties form Bowling Game
  */
@@ -159,10 +150,6 @@ bool BowlingGame::getIsStrike() {
 bool BowlingGame::getExtraRoll() {
     return allowBonusRoll;
 }
-
-
-
-
 
 /*
  * Functions to display the scores on the console
@@ -222,7 +209,6 @@ bool BowlingGame::checkVector(int index, std::vector <int> vec) {
     }
     return false;
 }
-
 
 // Return the final score
 int BowlingGame::getScore() {
