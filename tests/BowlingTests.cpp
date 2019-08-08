@@ -83,5 +83,3 @@ TEST_F(BOWLINGtest, canHandlePerfectGame){
     manyRolls(12,10);
     ASSERT_EQ(game.getScore(),300);
 }
-
-

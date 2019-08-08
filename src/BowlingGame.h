@@ -2,42 +2,45 @@
 // Created by monica on 8/4/19.
 //
 
+#include <vector>
+
 #ifndef BOWLINGGAME_BOWLINGGAME_H
 #define BOWLINGGAME_BOWLINGGAME_H
-
-#endif //BOWLINGGAME_BOWLINGGAME_H
-
-
 class BowlingGame {
 
 
-    int rolls[21];
-    int currentRoll{}, firstRollOfFrame{}, rollsAfterStrike{};
+
+    int rollsAfterStrike{};
     int totalScore{};
     bool isStrike{false};
     bool isSpare{false};
+    bool allowBonusRoll{false};
+    std::vector <int> scoresPerFrame{ };
+    std::vector<int> rolls;
+    std::vector <int> strikes{},spares{};
+    std::vector <int> frames{0};
+
+
 
 public:
 
     void roll(int pins);
 
-    void startNewFrame();
-
-    int addLastTwo(int rollIndex);
+    int addLastTwo();
 
     int getScore();
 
-    bool checkStrike(int rollIndex);
+    bool checkStrike();
 
     bool checkSpare();
 
-    int spareBonus(int rollIndex);
+    int spareBonus();
 
-    int strikeBonus(int rollIndex);
+    int strikeBonus();
 
     void evaluateRoll();
 
-    bool isFrameComplete();
+    bool checkFrameComplete();
 
     void set(int &variable, int value);
 
@@ -45,6 +48,23 @@ public:
 
     bool checkConsecutiveStrikes();
 
+    void addToTotal(int score);
+
+    bool getIsStrike();
+
+    void frameReset();
+
+    bool getExtraRoll();
+
+    //Display functions
+
     void displayScore();
 
+    bool checkVector(int index, std::vector <int> vec);
+
+
+
 };
+#endif //BOWLINGGAME_BOWLINGGAME_H
+
+
