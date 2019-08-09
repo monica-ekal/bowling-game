@@ -1,9 +1,16 @@
+// A console based bowling score calculator
+// Monica Ekal, 2019.
+
+/*
+ * This class deals with requesting form the user the number of pins knocked down, and makes sure that it is valid.
+ * It also displays the score after each roll
+ */
 
 #include "Interface.h"
 #include <iostream>
 
 
-//Functions dealing with user input
+//---Functions dealing with user input---//
 //Ensure that the number of pins is valid: The total pins knocked down in each frame can be at most 10.
 int Interface::nextRoll(const BowlingGame& game){
     if(rollNumber%2!=0 || game.getIsStrike()) prevRoll = 0 ;
@@ -21,12 +28,9 @@ int Interface::nextRoll(const BowlingGame& game){
     return pins;
 }
 
-/*
-* Keep track of the number of rolls.
-* The maximum number is 21, if roll number 20 is a spare, or roll number 19 is a strike)
-* [Through frames 1-9, a strike is counted as two rolls because no more pins are left for that frame]
-*
-*/
+//Keep track of the number of rolls. The maximum number is 21, if roll number 20 is a spare, or roll number 19 is a strike)
+//[Through frames 1-9, a strike is counted as two rolls because no more pins are left for that frame]
+
 void Interface::prepareNextRoll(const BowlingGame& game){
 
     if(rollNumber>=19 && game.isExtraRoll()) {
@@ -44,7 +48,7 @@ int Interface::getRollNumber () const{
 }
 
 
-//Functions to display the scores on the console
+//----Functions to display the scores on the console----//
 void Interface::displayScore(const BowlingGame& game) {
     std::cout<<"\n";
     // printing the number of bottles knocked down

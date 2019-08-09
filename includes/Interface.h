@@ -1,4 +1,5 @@
-
+// A console based bowling score calculator
+// Monica Ekal, 2019.
 #ifndef BOWLINGGAME_INTERFACE_H
 #define BOWLINGGAME_INTERFACE_H
 

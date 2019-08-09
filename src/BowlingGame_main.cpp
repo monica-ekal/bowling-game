@@ -1,3 +1,5 @@
+// A console based bowling score calculator
+// Monica Ekal, 2019.
 
 #include <iostream>
 #include "BowlingGame.h"

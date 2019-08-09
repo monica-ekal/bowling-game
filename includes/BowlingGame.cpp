@@ -1,14 +1,20 @@
+// A console based bowling score calculator
+// Monica Ekal, 2019.
+
+/*
+ * This class consists of methods that keep the score after every roll
+ */
+
 
 #include "BowlingGame.h"
 #include <vector>
 
-// Store number of pins knocked down at every roll, and find their score
+//----Store number of pins knocked down at every roll, and find their score----//
 void BowlingGame::roll(int pins) {
     rolls.push_back(pins);
     evaluateRoll();
 }
 
-// Calculate value of every roll
 void BowlingGame::evaluateRoll() {
 
     if(isSpare) {                                   // Spare bonus if previous roll was a spare
@@ -104,7 +110,7 @@ void BowlingGame::bonusRollCheck() {
 }
 
 
-//----Functions for keeping track of the frames---//
+//----Functions for keeping track of the frames----//
 // Check if there have been two rolls in the current frame
 bool BowlingGame::checkFrameComplete() {
     return (rolls.size() - 1 == frames.back() + 1);
@@ -118,7 +124,7 @@ void BowlingGame::frameReset() {
 
 
 
-//---Setting functions for changing isSpare, isStrike and allowBonusRoll---//
+//----Setting functions for changing isSpare, isStrike and allowBonusRoll----//
  void BowlingGame::set(int& var, int value){
     var = value;
 }
@@ -128,7 +134,7 @@ void BowlingGame::set(bool& var, bool value){
 }
 
 
-//---Functions for main and Class Interface to access properties form Bowling Game----//
+//----Functions for main and Class Interface to access properties form Bowling Game----//
 int BowlingGame::getScore() const{
     return totalScore;
 }
