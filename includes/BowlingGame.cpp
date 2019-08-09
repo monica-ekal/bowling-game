@@ -1,4 +1,8 @@
-//A bowling score calculator that keeps track of the score in each frame.
+
+//
+// Created by monica on 8/2/19.
+//
+
 
 #include "BowlingGame.h"
 #include <iostream>
@@ -6,29 +10,26 @@
 #include <iomanip>
 
 
-// Record pins hit at every roll
+// Store number of pins knocked down at every roll, and find their score
 void BowlingGame::roll(int pins) {
-
     rolls.push_back(pins);
     evaluateRoll();
-
 }
 
 
 // Calculate value of every roll
 void BowlingGame::evaluateRoll() {
 
-    if(isSpare) {
+    if(isSpare) {                                   // Spare bonus if previous roll was a spare
         addToTotal(10 + spareBonus());
         set(isSpare,false);
     }
 
-
-    if(isStrike || rollsAfterStrike==1) {
+    if(isStrike || rollsAfterStrike==1) {           // Strike bonus if previous roll was a strike
         rollsAfterStrike++;
         if(rollsAfterStrike==2) {
             addToTotal(10 + strikeBonus());
-            if (checkConsecutiveStrikes()){
+            if (checkConsecutiveStrikes()){         // Keep track in case of two or more successive strikes
                 rollsAfterStrike --;
             } else {
                 set(rollsAfterStrike,0);
@@ -37,28 +38,26 @@ void BowlingGame::evaluateRoll() {
         set(isStrike,false);
     }
 
-
-    if (checkStrike()) {
-
+    if (checkStrike()) {                            // for every roll, check if it is a strike/spare/2nd roll in the frame
         set(isStrike, true);
-        if (frames.size() == 10) set(allowBonusRoll, true);
-        else frameReset();
-
+        frameReset();
     } else {
+        if (!bonusRoll) {                           // for rolls after spare or strike in frame 10, ignore this block
 
-        if (!allowBonusRoll) {
             if (checkFrameComplete()) {
                 if (checkSpare()){
                     set(isSpare, true);
-                    if (frames.size() == 10) set(allowBonusRoll, true);}
-                else
+                } else{
                     addToTotal(addLastTwo());
-                if(!allowBonusRoll) frameReset();
+                }
+
+                frameReset();
             }
         }
     }
 
 }
+
 
 /*
  * Functions for calculating the score
@@ -85,6 +84,7 @@ void BowlingGame::addToTotal(int score) {
     scoresPerFrame.push_back(totalScore);
 }
 
+
 /*
  * Functions for checking if the roll results in a strike or spare
  */
@@ -92,6 +92,7 @@ void BowlingGame::addToTotal(int score) {
 bool BowlingGame::checkSpare() {
     if(addLastTwo() == 10) {
         spares.push_back(rolls.size()-1);
+        bonusRollCheck();
         return true;
     }
     return false;
@@ -100,17 +101,24 @@ bool BowlingGame::checkSpare() {
 bool BowlingGame::checkStrike() {
     if (*std::prev(rolls.end()) == 10) {
         strikes.push_back(rolls.size() - 1);
+        bonusRollCheck();
         return true;
     }
     return false;
 }
 
 bool BowlingGame::checkConsecutiveStrikes() {
-    if( *(std::prev(rolls.end())-1) == 10) {
+    if( *(std::prev(rolls.end(),2)) == 10) {
         return true;
     }
     return false;
 }
+
+// If extra rolls will be necessary in the 10th frame, set bonusRoll to true.
+void BowlingGame::bonusRollCheck() {
+    if (frames.size() == 10) set(bonusRoll, true);
+}
+
 
 /*
  * Functions for keeping track of the frames
@@ -124,8 +132,11 @@ bool BowlingGame::checkFrameComplete() {
 
 // store the first roll of this frame
 void BowlingGame::frameReset() {
-    frames.push_back(rolls.size());
+    if(!bonusRoll)
+        frames.push_back(rolls.size());
 }
+
+
 
 /*
  * Setting functions for changing isSpare, isStrike and allowBonusRoll
@@ -139,6 +150,7 @@ void BowlingGame::set(bool& var, bool value){
     var = value;
 }
 
+
 /*
  * Functions for main.cpp to access properties form Bowling Game
  */
@@ -148,8 +160,12 @@ bool BowlingGame::getIsStrike() {
 }
 
 bool BowlingGame::getExtraRoll() {
-    return allowBonusRoll;
+    return bonusRoll;
 }
+
+
+
+
 
 /*
  * Functions to display the scores on the console
@@ -169,7 +185,6 @@ void BowlingGame::displayScore() {
             std::cout<<"    ";}
 
         } else {
-
             if(checkVector(index, strikes)) std::cout<<" x";
             else if (checkVector(index, spares)) std::cout << " /";
             else std::cout<<" "<<rolls[index];
@@ -177,7 +192,6 @@ void BowlingGame::displayScore() {
 
 
     }
-
     if(scoresPerFrame.size()==10) std::cout<<" | ";
     std::cout<<"\n ";
 
@@ -185,14 +199,11 @@ void BowlingGame::displayScore() {
 
     for (auto scoreIt = scoresPerFrame.begin(); scoreIt != scoresPerFrame.end(); scoreIt++){
         std::cout<<"|";std::cout<<"___";
-
         if(*scoreIt>100)std::cout<<*scoreIt;
         else if(*scoreIt>10) std::cout<<"_"<<*scoreIt;
         else std::cout<<"_"<<*scoreIt<<"_";
-
         std::cout<<"___";
     }
-
     if(scoresPerFrame.size()==10)std::cout<<"|";
 
 
@@ -210,8 +221,9 @@ bool BowlingGame::checkVector(int index, std::vector <int> vec) {
     return false;
 }
 
+
 // Return the final score
 int BowlingGame::getScore() {
-    std::cout<<"Final score : "<<totalScore<<"\n";
+    std::cout<<"Final score : "<<totalScore;
     return totalScore;
 }

@@ -14,7 +14,7 @@ A strike (denoted by x) is when the player knocks down all 10 pins on his first 
 In the tenth frame a player who rolls a spare or strike is allowed to roll the extra balls to complete the frame.  However no more than three balls can be rolled in tenth frame.
 
 ## Instructions
-1. Run in Console/Terminal using-
+1. Run in the terminal using
 
 `./bin/BowlingGame`
 

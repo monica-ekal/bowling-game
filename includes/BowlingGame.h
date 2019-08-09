@@ -1,5 +1,3 @@
-//A bowling score calculator that keeps track of the score in each frame.
-
 
 #include <vector>
 
@@ -7,13 +5,18 @@
 #define BOWLINGGAME_BOWLINGGAME_H
 class BowlingGame {
 
+
+
     int rollsAfterStrike, totalScore;
-    bool isStrike, isSpare, allowBonusRoll;
+    bool isStrike, isSpare, bonusRoll;
     std::vector <int> scoresPerFrame, rolls, strikes, spares, frames;
+
+
+
 
 public:
 
-    BowlingGame(): isStrike{false}, isSpare{false}, allowBonusRoll{false}, frames{0}, totalScore{0}, rollsAfterStrike{0}{};
+    BowlingGame(): isStrike{false}, isSpare{false}, bonusRoll{false}, frames{0}, totalScore{0}, rollsAfterStrike{0}{};
 
     void roll(int pins);
 
@@ -47,12 +50,16 @@ public:
 
     bool getExtraRoll();
 
+    void bonusRollCheck();
+
     //Display functions
 
     void displayScore();
 
     bool checkVector(int index, std::vector <int> vec);
-    
+
+
+
 };
 #endif //BOWLINGGAME_BOWLINGGAME_H
 

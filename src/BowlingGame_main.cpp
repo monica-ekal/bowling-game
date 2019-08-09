@@ -1,4 +1,3 @@
-//A bowling score calculator that keeps track of the score in each frame.
 
 #include <iostream>
 #include "BowlingGame.h"
@@ -15,6 +14,7 @@ int prevRoll;
 
 int main (int argc, char *argv[]) {
 
+
     int pins;
     while(rollNumber<21 ||(rollNumber==21&&game.getExtraRoll())) {
 
@@ -22,6 +22,7 @@ int main (int argc, char *argv[]) {
         game.roll(pins);
         game.displayScore();
         prepareNextRoll();
+
 
     }
 
@@ -35,25 +36,21 @@ int main (int argc, char *argv[]) {
  */
 
 
-//Ensure that the number of pins is valid: The total pins knocked down in each frame can be at most 10.
+/*
+ * Ensure that the number of pins is valid: The total pins knocked down in each frame can be at most 10.
+ */
 int nextRoll(){
-
     if(rollNumber%2!=0 || game.getIsStrike()) prevRoll = 0 ;
-
     int pins{};
-    std::cout<<"Enter number of Pins Knocked down from";
-
+    std::cout<<"Enter number of pins knocked down from";
     for (int i = 0; i<11;i++)
         if(i+prevRoll<=10) std::cout<<"  "<<i;
-
     std::cout<<": ";
     std::cin>>pins;
-
     while(pins+prevRoll>10){
         std::cout<<"Please enter a number from the above choices: ";
         std::cin>>pins;
     }
-
     prevRoll = pins;
     return pins;
 }
@@ -70,6 +67,7 @@ void prepareNextRoll(){
             rollNumber++;
         } else {
         game.getIsStrike() ? rollNumber += 2 : rollNumber++;
+
     }
 
 
