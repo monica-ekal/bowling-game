@@ -1,76 +1,39 @@
 
 #include <iostream>
 #include "BowlingGame.h"
-#include "Display.h"
-
-int nextRoll();
-void prepareNextRoll();
-
-BowlingGame game;
-int rollNumber = 1;
-int prevRoll;
-
-
+#include "Interface.h"
 
 int main (int argc, char *argv[]) {
+    BowlingGame game;                       //functions for score calculation
+    Interface console;                      //functions for getting user input and displaying score
 
 
     int pins;
-    while(rollNumber<21 ||(rollNumber==21&&game.getExtraRoll())) {
 
-        pins = nextRoll();
+    // Player gets 20 rolls unless a spare or strike is rolled in the last frame, when it is 21.
+    while(console.getRollNumber()<21 ||(console.getRollNumber()==21&&game.isExtraRoll())) {
+
+        pins = console.nextRoll(game);
         game.roll(pins);
-        game.displayScore();
-        prepareNextRoll();
+        console.displayScore(game);
+        console.prepareNextRoll(game);
 
 
     }
 
-    game.getScore();
+    console.getScore(game);
     return 0;
 }
 
 
-/*
- * Functions dealing with user input
- */
 
 
-/*
- * Ensure that the number of pins is valid: The total pins knocked down in each frame can be at most 10.
- */
-int nextRoll(){
-    if(rollNumber%2!=0 || game.getIsStrike()) prevRoll = 0 ;
-    int pins{};
-    std::cout<<"Enter number of pins knocked down from";
-    for (int i = 0; i<11;i++)
-        if(i+prevRoll<=10) std::cout<<"  "<<i;
-    std::cout<<": ";
-    std::cin>>pins;
-    while(pins+prevRoll>10){
-        std::cout<<"Please enter a number from the above choices: ";
-        std::cin>>pins;
-    }
-    prevRoll = pins;
-    return pins;
-}
-
-/*
- * Keep track of the number of rolls.
- * The maximum number is 21, if roll number 20 is a spare, or roll number 19 is a strike)
- * [Through frames 1-9, a strike is counted as two rolls because no more pins are left for that frame]
- *
- */
-void prepareNextRoll(){
-
-        if(rollNumber>=19 && game.getExtraRoll()) {
-            rollNumber++;
-        } else {
-        game.getIsStrike() ? rollNumber += 2 : rollNumber++;
-
-    }
 
 
-}
+
+
+
+
+
 
 
