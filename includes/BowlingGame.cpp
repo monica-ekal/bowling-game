@@ -1,15 +1,12 @@
 // A console based bowling score calculator
 // Monica Ekal, 2019.
-
 /*
  * This class consists of methods that keep the score after every roll
  */
-
-
 #include "BowlingGame.h"
-#include <vector>
 
 //----Store number of pins knocked down at every roll, and find their score----//
+
 void BowlingGame::roll(int pins) {
     rolls.push_back(pins);
     evaluateRoll();
@@ -70,15 +67,14 @@ int BowlingGame::strikeBonus(){
 int BowlingGame::addLastTwo() {
     return *std::prev(rolls.end()) + *std::prev(rolls.end() - 1);
 }
-
 // Keep a running total of the score
 void BowlingGame::addToTotal(int score) {
     totalScore+=score;
     scoresPerFrame.push_back(totalScore);
 }
 
-
 //----Functions for checking if the roll results in a strike or spare----//
+
 bool BowlingGame::checkSpare() {
     if(addLastTwo() == 10) {
         spares.push_back(rolls.size()-1);
@@ -103,14 +99,13 @@ bool BowlingGame::checkConsecutiveStrikes() {
     }
     return false;
 }
-
 // If extra rolls will be necessary in the 10th frame, set bonusRoll to true.
 void BowlingGame::bonusRollCheck() {
     if (frames.size() == 10) set(bonusRoll, true);
 }
 
-
 //----Functions for keeping track of the frames----//
+
 // Check if there have been two rolls in the current frame
 bool BowlingGame::checkFrameComplete() {
     return (rolls.size() - 1 == frames.back() + 1);
@@ -122,9 +117,8 @@ void BowlingGame::frameReset() {
         frames.push_back(rolls.size());
 }
 
-
-
 //----Setting functions for changing isSpare, isStrike and allowBonusRoll----//
+
  void BowlingGame::set(int& var, int value){
     var = value;
 }
@@ -133,8 +127,8 @@ void BowlingGame::set(bool& var, bool value){
     var = value;
 }
 
-
 //----Functions for main and Class Interface to access properties form Bowling Game----//
+
 int BowlingGame::getScore() const{
     return totalScore;
 }
@@ -144,24 +138,4 @@ bool BowlingGame::getIsStrike() const{
 
 bool BowlingGame::isExtraRoll() const{
     return bonusRoll;
-}
-
-std::vector<int> BowlingGame::getAllStrikes() const{
-    return strikes;
-}
-
-std::vector<int> BowlingGame::getAllSpares() const{
-    return spares;
-}
-
-std::vector<int> BowlingGame::getScoresPerFrame() const{
-    return scoresPerFrame;
-}
-
-std::vector<int> BowlingGame::getFrames() const{
-    return frames;
-}
-
-std::vector<int> BowlingGame::getRolls() const{
-    return rolls;
 }

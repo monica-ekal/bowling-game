@@ -1,9 +1,11 @@
 // A console based bowling score calculator
 // Monica Ekal, 2019.
-#include <vector>
 
 #ifndef BOWLINGGAME_BOWLINGGAME_H
 #define BOWLINGGAME_BOWLINGGAME_H
+#include <vector>
+#include "Interface.h"
+
 class BowlingGame {
 
     int rollsAfterStrike, totalScore;
@@ -26,13 +28,13 @@ public:
 
     bool isExtraRoll() const ;
 
+    int getScore() const;
+
     int addLastTwo();
 
     int spareBonus();
 
     int strikeBonus();
-
-    int getScore() const;
 
     void roll(int pins);
 
@@ -48,17 +50,7 @@ public:
 
     void frameReset();
 
-    std::vector<int> getAllStrikes() const;
-
-    std::vector<int> getAllSpares() const;
-
-    std::vector<int> getScoresPerFrame() const;
-
-    std::vector<int> getFrames() const;
-
-    std::vector<int> getRolls() const;
+    friend void Interface::displayScore(const BowlingGame& game);
 
 };
 #endif //BOWLINGGAME_BOWLINGGAME_H
-
-

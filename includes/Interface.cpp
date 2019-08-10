@@ -1,16 +1,15 @@
 // A console based bowling score calculator
 // Monica Ekal, 2019.
-
 /*
  * This class deals with requesting form the user the number of pins knocked down, and makes sure that it is valid.
  * It also displays the score after each roll
  */
 
 #include "Interface.h"
-#include <iostream>
+#include "BowlingGame.h"
 
+//----Functions dealing with user input----//
 
-//---Functions dealing with user input---//
 //Ensure that the number of pins is valid: The total pins knocked down in each frame can be at most 10.
 int Interface::nextRoll(const BowlingGame& game){
     if(rollNumber%2!=0 || game.getIsStrike()) prevRoll = 0 ;
@@ -30,7 +29,6 @@ int Interface::nextRoll(const BowlingGame& game){
 
 //Keep track of the number of rolls. The maximum number is 21, if roll number 20 is a spare, or roll number 19 is a strike)
 //[Through frames 1-9, a strike is counted as two rolls because no more pins are left for that frame]
-
 void Interface::prepareNextRoll(const BowlingGame& game){
 
     if(rollNumber>=19 && game.isExtraRoll()) {
@@ -49,39 +47,39 @@ int Interface::getRollNumber () const{
 
 
 //----Functions to display the scores on the console----//
+
 void Interface::displayScore(const BowlingGame& game) {
     std::cout<<"\n";
     // printing the number of bottles knocked down
-    for (int index = 0; index<game.getRolls().size(); index++)
+    for (int index = 0; index<game.rolls.size(); index++)
     {
-        if(checkVector(index, game.getFrames())) {
+        if(checkVector(index, game.frames)) {
 
             std::cout<<" | ";
-            if(checkVector(index, game.getAllStrikes())) std::cout<<"      x";
+            if(checkVector(index, game.strikes)) std::cout<<"      x";
             else {
-                std::cout << game.getRolls()[index];
+                std::cout << game.rolls[index];
                 std::cout<<"    ";}
 
         } else {
 
-            if(checkVector(index, game.getAllStrikes())) std::cout<<" x";
-            else if (checkVector(index, game.getAllSpares())) std::cout << " /";
-            else std::cout<<" "<<game.getRolls()[index];
+            if(checkVector(index, game.strikes)) std::cout<<" x";
+            else if (checkVector(index, game.spares)) std::cout << " /";
+            else std::cout<<" "<<game.rolls[index];
         }
     }
-    if(game.getScoresPerFrame().size()==10) std::cout<<" | ";
+    if(game.scoresPerFrame.size()==10) std::cout<<" | ";
     std::cout<<"\n ";
 
     // printing scores
-    std::vector <int> scoresPerFrame = game.getScoresPerFrame();
-    for (auto scoreIt = scoresPerFrame.begin(); scoreIt != scoresPerFrame.end(); scoreIt++){
+    for (auto scoreIt = game.scoresPerFrame.begin(); scoreIt != game.scoresPerFrame.end(); scoreIt++){
         std::cout<<"|";std::cout<<"___";
         if(*scoreIt>100)std::cout<<*scoreIt;
         else if(*scoreIt>10) std::cout<<"_"<<*scoreIt;
         else std::cout<<"_"<<*scoreIt<<"_";
         std::cout<<"___";
     }
-    if(game.getScoresPerFrame().size()==10)std::cout<<"|";
+    if(game.scoresPerFrame.size()==10)std::cout<<"|";
     std::cout<<"\n\n";
 }
 
@@ -91,7 +89,6 @@ bool Interface::checkVector(int index, std::vector <int> vec) {
     }
     return false;
 }
-
 // Return the final score
 void Interface::getScore(const BowlingGame& game) const{
     std::cout<<"Final score : "<<game.getScore();

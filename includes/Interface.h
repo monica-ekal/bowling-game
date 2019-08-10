@@ -3,7 +3,10 @@
 #ifndef BOWLINGGAME_INTERFACE_H
 #define BOWLINGGAME_INTERFACE_H
 
-#include "BowlingGame.h"
+class BowlingGame;
+
+#include <vector>
+#include <iostream>
 
 /*
  * This class deals with requesting form the user the number of pins knocked down, and makes sure that it is valid.
