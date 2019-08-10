@@ -16,7 +16,7 @@ void BowlingGame::evaluateRoll() {
 
     if(isSpare) {                                   // Spare bonus if previous roll was a spare
         addToTotal(10 + spareBonus());
-        set(isSpare,false);
+        setVar(isSpare,false);
     }
 
     if(isStrike || rollsAfterStrike==1) {           // Strike bonus if previous roll was a strike
@@ -26,21 +26,21 @@ void BowlingGame::evaluateRoll() {
             if (checkConsecutiveStrikes()){         // Keep track in case of two or more successive strikes
                 rollsAfterStrike --;
             } else {
-                set(rollsAfterStrike,0);
+                setVar(rollsAfterStrike,0);
             }
         }
-        set(isStrike,false);
+        setVar(isStrike,false);
     }
 
     if (checkStrike()) {                            // for every roll, check if it is a strike/spare/2nd roll in the frame
-        set(isStrike, true);
+        setVar(isStrike, true);
         frameReset();
     } else {
         if (!bonusRoll) {                           // for rolls after spare or strike in frame 10, ignore this block
 
             if (checkFrameComplete()) {
                 if (checkSpare()){
-                    set(isSpare, true);
+                    setVar(isSpare, true);
                 } else{
                     addToTotal(addLastTwo());
                 }
@@ -101,7 +101,7 @@ bool BowlingGame::checkConsecutiveStrikes() {
 }
 // If extra rolls will be necessary in the 10th frame, set bonusRoll to true.
 void BowlingGame::bonusRollCheck() {
-    if (frames.size() == 10) set(bonusRoll, true);
+    if (frames.size() == 10) setVar(bonusRoll, true);
 }
 
 //----Functions for keeping track of the frames----//
@@ -119,11 +119,8 @@ void BowlingGame::frameReset() {
 
 //----Setting functions for changing isSpare, isStrike and allowBonusRoll----//
 
- void BowlingGame::set(int& var, int value){
-    var = value;
-}
-
-void BowlingGame::set(bool& var, bool value){
+template <typename T>
+void BowlingGame::setVar(T& var, T value ){
     var = value;
 }
 
@@ -132,6 +129,7 @@ void BowlingGame::set(bool& var, bool value){
 int BowlingGame::getScore() const{
     return totalScore;
 }
+
 bool BowlingGame::getIsStrike() const{
     return isStrike;
 }

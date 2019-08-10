@@ -40,9 +40,8 @@ public:
 
     void evaluateRoll();
 
-    void set(int &variable, int value);
-
-    void set(bool &variable, bool value);
+    template <typename T>
+    void setVar(T& var, T value );
 
     void addToTotal(int score);
 
