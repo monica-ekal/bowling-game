@@ -49,9 +49,7 @@ void BowlingGame::evaluateRoll() {
             }
         }
     }
-
 }
-
 
 //----Helper functions for calculating the score----//
 
