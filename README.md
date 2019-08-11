@@ -1,9 +1,11 @@
 # bowling-game
 A bowling score calculator that keeps track of the score in each frame.
 
-Test-driven development (TDD) was used to develop this code. The test sections in /tests/ are from the [Bowling Game Kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata) by Robert C. Martin (Uncle Bob). While the code in Uncle Bob's slides calculates the total score after all rolls, this program makes a running total of the score. 
+This code is based on Test-driven development (TDD). The test sections in /tests/ are from the [Bowling Game Kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata) by Robert C. Martin (Uncle Bob). While the code in Uncle Bob's slides calculates the total score after all rolls, this calculator keeps a running total of the score. 
 
 ## Scoring in bowling (from the Bowling Game Kata slides)
+
+![alt text](/media/BowlingScore.png)
 
 The game consists of 10 frames. In each frame the player has two opportunities to knock down 10 pins.  The score for the frame is the total number of pins knocked down, plus bonuses for strikes and spares.
 
