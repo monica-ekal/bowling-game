@@ -1,9 +1,8 @@
-// Tests from http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata
 
 
 #include <iostream>
 #include <gtest/gtest.h>
-#include "../src/BowlingGame.h"
+#include "../include/BowlingGame.h"
 
 using namespace std;
 
@@ -29,6 +28,7 @@ protected:
     }
 };
 
+
 /*
 TEST(BOWLINGtest, SimpleAssert){
 
@@ -51,7 +51,6 @@ TEST_F(BOWLINGtest, canComputeScoreAllOnes){
 
     manyRolls(20,1);
     ASSERT_EQ(game.getScore(),20);
-
 }
 
 TEST_F(BOWLINGtest, canHandleSpares){
@@ -60,7 +59,6 @@ TEST_F(BOWLINGtest, canHandleSpares){
     game.roll(1);
     manyRolls(17,0);
     ASSERT_EQ(game.getScore(),12);
-
 }
 
 TEST_F(BOWLINGtest, canHandleStrikes){
@@ -70,7 +68,6 @@ TEST_F(BOWLINGtest, canHandleStrikes){
     game.roll(1);
     manyRolls(17,0);
     ASSERT_EQ(game.getScore(),14);
-
 }
 
 TEST_F(BOWLINGtest, canHandlePerfectGame){

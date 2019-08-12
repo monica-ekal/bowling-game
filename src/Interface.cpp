@@ -5,8 +5,8 @@
  * It also displays the score after each roll
  */
 
-#include "Interface.h"
-#include "BowlingGame.h"
+#include "../include/Interface.h"
+#include "../include/BowlingGame.h"
 
 //----Functions dealing with user input----//
 
@@ -37,8 +37,6 @@ void Interface::prepareNextRoll(const BowlingGame& game){
         game.getIsStrike() ? rollNumber += 2 : rollNumber++;
 
     }
-
-
 }
 
 int Interface::getRollNumber () const{

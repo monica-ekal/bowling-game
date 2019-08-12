@@ -3,7 +3,7 @@
 /*
  * This class consists of methods that keep the score after every roll
  */
-#include "BowlingGame.h"
+#include "../include/BowlingGame.h"
 
 //----Store number of pins knocked down at every roll, and find their score----//
 

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.5)
+project(BowlingGame)
+set(CMAKE_CXX_STANDARD 11)
+set(SOURCE_FILES BowlingGame.cpp BowlingGame_main.cpp Interface.cpp)
+add_executable(BowlingGame ${SOURCE_FILES})
+include_directories(../include)

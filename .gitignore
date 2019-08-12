@@ -1,7 +1,11 @@
 #Do not track the contents of these folders
 
 .idea/
+cmake-build-debug/
+build/
 
 # or these files
 
 *.swp
+CMakeFiles
+CMakeCache.txt
