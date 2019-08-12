@@ -18,10 +18,10 @@ In the tenth frame a player who rolls a spare or strike is allowed to roll the e
 ## Build instructions
 1. Build from the terminal using
 
-    `mkdir build`
-    `cd build`
-    `cmake ..`
-    `make`
+    `mkdir build`  
+    `cd build`  
+    `cmake ..`  
+    `make`  
 
 2. Run the BowlingGame program from build/src/ using ./BowlingGame
 
