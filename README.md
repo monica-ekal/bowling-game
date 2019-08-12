@@ -15,12 +15,15 @@ A strike (denoted by x) is when the player knocks down all 10 pins on his first 
 
 In the tenth frame a player who rolls a spare or strike is allowed to roll the extra balls to complete the frame.  However no more than three balls can be rolled in tenth frame.
 
-## Instructions
-1. Run in the terminal using
+## Build instructions
+1. Build from the terminal using
 
-`./bin/BowlingGame`
+    `mkdir build`
+    `cd build`
+    `cmake ..`
+    `make`
 
-2. Enter the number of pins knocked down at each roll as prompted.
+2. Run the BowlingGame program from build/src/ using ./BowlingGame
 
 ## An example of the console output
 ![alt text](/media/output_example.png)
